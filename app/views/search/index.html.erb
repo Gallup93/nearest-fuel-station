@@ -1,0 +1,22 @@
+
+
+<section>
+  <div class="station-info">
+    <h1>Nearest Station: <%= @station[:station_name] %></h1>
+    <ul>
+      <li> <%= "Address: #{@station[:street_address]+" "+@station[:city]+" "+@station[:state]+" "+@station[:zip]}" %> </li>
+      <li> <%= "Fuel Type: #{@station[:fuel_type_code]}" %> </li>
+      <li> <%= "Access Times: #{@station[:access_days_time]}" %> </li>
+      <li> <%= "Distance: #{@station[:distance].round(1)} miles" %> </li>
+      <li> <%= "Travel Time: #{@json[:route][:formattedTime]}" %> </li>
+    </ul>
+  </div>
+  <div class="directions">
+    <h3>Directions: </h3>
+    <ol>
+      <% @json[:route][:legs][0][:maneuvers].each do |maneuver| %>
+        <li> <%= maneuver[:narrative] %> </li><br>
+      <% end %>
+    </ol>
+  </div>
+</section>
